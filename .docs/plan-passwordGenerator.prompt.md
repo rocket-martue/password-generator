@@ -12,11 +12,12 @@ password-generator/
 ├── _headers            # Cloudflare Pages HTTP レスポンスヘッダー設定
 ├── index.html          # メインHTML・全 UI 構造
 ├── css/
-│   └── style.css       # ライト / ダークテーマ デザイン（SCSS コンパイル済み）
+│   └── style.css            # ライト / ダークテーマ デザイン（SCSS コンパイル済み）
 ├── scss/
-│   ├── style.scss      # エントリポイント
-│   ├── _variables.scss # テーマトークン（ライト :root + ダーク [data-theme=dark]）
-│   └── ...             # パーシャル各種
+│   ├── style.scss           # エントリポイント
+│   ├── _variables.scss      # テーマトークン（ライト :root + ダーク [data-theme=dark]）
+│   ├── _security-bar.scss   # セキュリティ情報バー（ヘッダー直下）
+│   └── ...                  # パーシャル各種
 └── js/
     ├── presets.js      # プリセット定義データ（サービス別・汎用）
     ├── generator.js    # パスワード生成ロジック（Web Crypto API）

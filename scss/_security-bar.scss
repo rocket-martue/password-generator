@@ -1,0 +1,33 @@
+// _security-bar.scss — セキュリティ情報バー（ヘッダー直下）
+
+.security-bar {
+	background: color-mix(in srgb, var(--accent-green) 8%, var(--bg-surface));
+	border-top: 1px solid color-mix(in srgb, var(--accent-green) 25%, transparent);
+	border-bottom: 1px solid color-mix(in srgb, var(--accent-green) 25%, transparent);
+	padding: 0.45rem 1.5rem;
+	margin-bottom: 1.25rem;
+}
+
+.security-strip {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.25rem 2rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.security-item {
+	display: flex;
+	align-items: center;
+	gap: 0.3rem;
+	font-size: var(--font-size-xs);
+	color: color-mix(in srgb, var(--accent-green) 80%, var(--text-primary));
+
+	&::before {
+		content: "✓";
+		font-weight: 700;
+		font-size: 0.8em;
+	}
+}

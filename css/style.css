@@ -729,10 +729,12 @@ body {
   min-height: 1.2em;
 }
 
-.app-footer {
-  border-top: 1px solid var(--border-color);
-  padding: 1rem 1.5rem 1.25rem;
-  margin-top: 0.5rem;
+.security-bar {
+  background: color-mix(in srgb, var(--accent-green) 8%, var(--bg-surface));
+  border-top: 1px solid color-mix(in srgb, var(--accent-green) 25%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-green) 25%, transparent);
+  padding: 0.45rem 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .security-strip {
@@ -744,7 +746,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 0.4rem 1.75rem;
+  gap: 0.25rem 2rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -757,13 +759,12 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
   font-size: var(--font-size-xs);
-  color: var(--text-muted);
+  color: color-mix(in srgb, var(--accent-green) 80%, var(--text-primary));
 }
 .security-item::before {
   content: "✓";
-  color: var(--accent-solid);
   font-weight: 700;
-  font-size: 0.85em;
+  font-size: 0.8em;
 }/*# sourceMappingURL=style.css.map */
