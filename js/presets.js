@@ -83,5 +83,44 @@ export const SERVICE_PRESETS = [
 	},
 ];
 
+/**
+ * レンタルサーバー別プリセット
+ *
+ * 各サービスの記号ポリシー・文字数制限は変更される可能性があります。
+ * 最新情報はご利用のサービスの公式サイトでご確認ください。
+ */
+export const HOSTING_PRESETS = [
+	{
+		id: 'xserver',
+		label: 'エックスサーバー',
+		symbols: '!#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
+		note: '参考値。公式ポリシーは変更される場合があります。',
+	},
+	{
+		id: 'sakura-rs',
+		label: 'さくらのレンタルサーバー',
+		symbols: '',
+		note: '参考値。英数字のみ推奨のサービスがあります。公式ポリシーは変更される場合があります。',
+	},
+	{
+		id: 'lolipop',
+		label: 'ロリポップ！',
+		symbols: '',
+		note: '参考値。英数字のみ推奨のサービスがあります。公式ポリシーは変更される場合があります。',
+	},
+	{
+		id: 'conoha-wing',
+		label: 'ConoHa WING',
+		symbols: '!#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
+		note: '参考値。英大文字・英小文字・数字・記号が各1文字以上必要です。公式ポリシーは変更される場合があります。',
+	},
+];
+
+/** カスタムプリセットの localStorage キー */
+export const CUSTOM_STORAGE_KEY = 'pg-custom-presets';
+
+/** カスタムプリセットの件数上限 */
+export const CUSTOM_PRESET_MAX = 50;
+
 /** 紛らわしい文字セット */
 export const AMBIGUOUS_CHARS = '0Ol1I|!';
