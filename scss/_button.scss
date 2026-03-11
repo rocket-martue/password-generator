@@ -6,10 +6,15 @@
 	padding: 0.5rem 1rem;
 	border: none;
 	border-radius: var(--radius-sm);
-	font-size: 0.85rem;
+	font-size: var(--font-size-sm);
 	font-weight: 500;
 	cursor: pointer;
 	transition: all var(--transition);
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-solid);
+		outline-offset: 2px;
+	}
 }
 
 .btn-secondary {
@@ -20,6 +25,11 @@
 	&:hover {
 		border-color: var(--accent-solid);
 		color: var(--text-primary);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-solid);
+		outline-offset: 2px;
 	}
 }
 
@@ -32,7 +42,7 @@
 	color: #fff;
 	border: none;
 	border-radius: var(--radius-md);
-	font-size: 1rem;
+	font-size: var(--font-size-md);
 	font-weight: 600;
 	cursor: pointer;
 	transition:
@@ -63,7 +73,7 @@
 	color: var(--text-secondary);
 	border: 1px solid var(--border-color);
 	border-radius: var(--radius-sm);
-	font-size: 0.8rem;
+	font-size: var(--font-size-xs);
 	cursor: pointer;
 	white-space: nowrap;
 	transition: all var(--transition);
@@ -72,6 +82,11 @@
 	&:hover {
 		border-color: var(--accent-solid);
 		color: var(--text-primary);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-solid);
+		outline-offset: 2px;
 	}
 
 	&.copied {

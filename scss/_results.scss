@@ -11,7 +11,7 @@
 }
 
 .results-title {
-	font-size: 0.75rem;
+	font-size: var(--font-size-sm);
 	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
@@ -44,7 +44,7 @@
 .password-text {
 	flex: 1;
 	font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
-	font-size: 0.95rem;
+	font-size: var(--font-size-sm);
 	color: var(--text-primary);
 	word-break: break-all;
 	letter-spacing: 0.03em;
@@ -54,7 +54,7 @@
 
 .error-message {
 	color: var(--danger);
-	font-size: 0.85rem;
+	font-size: var(--font-size-sm);
 	margin-top: 0.5rem;
 	min-height: 1.2em;
 }

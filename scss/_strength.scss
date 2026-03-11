@@ -48,7 +48,7 @@
 }
 
 .strength-label {
-	font-size: 0.8rem;
+	font-size: var(--font-size-xs);
 	color: var(--text-secondary);
 	min-width: 5em;
 	text-align: right;

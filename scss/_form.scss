@@ -44,11 +44,16 @@
 	color: var(--text-primary);
 	border: 1px solid var(--border-color);
 	border-radius: var(--radius-sm);
-	font-size: 0.9rem;
+	font-size: var(--font-size-sm);
 	text-align: center;
 
 	&:focus {
 		outline: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-solid);
+		outline-offset: 2px;
 		border-color: var(--accent-solid);
 	}
 }
@@ -62,12 +67,17 @@
 	color: var(--text-primary);
 	border: 1px solid var(--border-color);
 	border-radius: var(--radius-sm);
-	font-size: 0.9rem;
+	font-size: var(--font-size-sm);
 	font-family: monospace;
 	transition: border-color var(--transition);
 
 	&:focus {
 		outline: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-solid);
+		outline-offset: 2px;
 		border-color: var(--accent-solid);
 	}
 }
@@ -91,7 +101,7 @@
 }
 
 .count-label {
-	font-size: 0.9rem;
+	font-size: var(--font-size-sm);
 	color: var(--text-secondary);
 	white-space: nowrap;
 }

@@ -14,7 +14,7 @@
 	margin-bottom: 1.25rem;
 
 	h1 {
-		font-size: 1.6rem;
+		font-size: var(--font-size-3xl);
 		font-weight: 700;
 		background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
 		-webkit-background-clip: text;
@@ -25,7 +25,7 @@
 
 	p {
 		color: var(--text-secondary);
-		font-size: 0.9rem;
+		font-size: var(--font-size-sm);
 	}
 }
 
@@ -43,7 +43,7 @@
 	color: var(--text-secondary);
 	border: 1px solid var(--border-color);
 	border-radius: var(--radius-sm);
-	font-size: 0.8rem;
+	font-size: var(--font-size-xs);
 	font-weight: 500;
 	cursor: pointer;
 	transition: all var(--transition);
@@ -93,12 +93,12 @@
 // ── セクション共通 ────────────────────────────────────────────
 
 .section-title {
-	font-size: 0.75rem;
+	font-size: var(--font-size-sm);
 	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
 	color: var(--text-muted);
-	margin-bottom: 1rem;
+	margin: 0 0 1rem; // h3 ブラウザデフォルトをリセット
 }
 
 .form-group {
