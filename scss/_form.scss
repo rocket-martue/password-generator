@@ -1,0 +1,101 @@
+// _form.scss — スライダー・テキスト入力・件数セレクト
+
+// ── パスワード長スライダー ────────────────────────────────────
+
+.length-row {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.length-slider {
+	flex: 1;
+	appearance: none;
+	height: 4px;
+	background: var(--border-color);
+	border-radius: 999px;
+	outline: none;
+	cursor: pointer;
+
+	&::-webkit-slider-thumb {
+		appearance: none;
+		width: 18px;
+		height: 18px;
+		background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+		border-radius: 50%;
+		cursor: pointer;
+		transition: transform var(--transition);
+
+		&:hover {
+			transform: scale(1.2);
+		}
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-solid);
+		outline-offset: 4px;
+	}
+}
+
+.length-number {
+	width: 56px;
+	padding: 0.3rem 0.5rem;
+	background: var(--bg-input);
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-sm);
+	font-size: 0.9rem;
+	text-align: center;
+
+	&:focus {
+		outline: none;
+		border-color: var(--accent-solid);
+	}
+}
+
+// ── テキスト入力 ──────────────────────────────────────────────
+
+.input-text {
+	width: 100%;
+	padding: 0.5rem 0.75rem;
+	background: var(--bg-input);
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-sm);
+	font-size: 0.9rem;
+	font-family: monospace;
+	transition: border-color var(--transition);
+
+	&:focus {
+		outline: none;
+		border-color: var(--accent-solid);
+	}
+}
+
+.input-row {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+
+	.input-text {
+		flex: 1;
+	}
+}
+
+// ── 生成件数 ──────────────────────────────────────────────────
+
+.count-row {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.count-label {
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+	white-space: nowrap;
+}
+
+.count-select {
+	width: 80px;
+}

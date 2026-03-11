@@ -1,0 +1,59 @@
+// _symbol.scss — 記号チェックボックスグリッド
+
+.symbol-grid {
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	gap: 0.35rem;
+	margin-top: 0.75rem;
+	transition: opacity var(--transition);
+
+	&.disabled {
+		opacity: 0.35;
+		pointer-events: none;
+	}
+}
+
+.symbol-check {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+
+	input {
+		position: absolute;
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		aspect-ratio: 1;
+		background: var(--bg-input);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-sm);
+		font-size: 0.85rem;
+		font-family: monospace;
+		color: var(--text-secondary);
+		transition: all var(--transition);
+		user-select: none;
+	}
+
+	input:checked + span {
+		background: rgba(124, 58, 237, 0.2);
+		border-color: var(--accent-solid);
+		color: var(--text-primary);
+	}
+
+	&:hover span {
+		border-color: var(--accent-solid);
+	}
+
+	input:focus-visible + span {
+		outline: 2px solid var(--accent-solid);
+		outline-offset: 2px;
+	}
+}

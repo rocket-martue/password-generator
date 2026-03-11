@@ -1,0 +1,114 @@
+// _layout.scss — ページ構造・カード・セクション共通
+
+// ── ラッパー・ヘッダー ────────────────────────────────────────
+
+.app-wrapper {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 2rem 1rem 4rem;
+}
+
+.app-header {
+	position: relative;
+	text-align: center;
+	margin-bottom: 2.5rem;
+
+	h1 {
+		font-size: 2rem;
+		font-weight: 700;
+		background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 0.4rem;
+	}
+
+	p {
+		color: var(--text-secondary);
+		font-size: 0.9rem;
+	}
+}
+
+// ── テーマ切り替えボタン ──────────────────────────────────────
+
+.theme-toggle-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.4rem 0.75rem;
+	background: var(--bg-surface);
+	color: var(--text-secondary);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-sm);
+	font-size: 0.8rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all var(--transition);
+
+	&:hover {
+		border-color: var(--accent-solid);
+		color: var(--text-primary);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-solid);
+		outline-offset: 2px;
+	}
+
+	.theme-toggle-icon {
+		font-size: 1rem;
+		line-height: 1;
+	}
+}
+
+// ── グリッドレイアウト ────────────────────────────────────────
+
+.main-layout {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1.5rem;
+	align-items: start;
+
+	@media (max-width: 680px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+// ── カード ────────────────────────────────────────────────────
+
+.card {
+	background: var(--bg-surface);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-lg);
+	padding: 1.5rem;
+}
+
+// ── セクション共通 ────────────────────────────────────────────
+
+.section-title {
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--text-muted);
+	margin-bottom: 1rem;
+}
+
+.form-group {
+	margin-bottom: 1.25rem;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+// ── 区切り線 ──────────────────────────────────────────────────
+
+.divider {
+	border: none;
+	border-top: 1px solid var(--border-color);
+	margin: 1rem 0;
+}
