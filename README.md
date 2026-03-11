@@ -64,7 +64,7 @@ password-generator/
 
 ## ホスティング
 
-[Cloudflare Pages](https://pages.cloudflare.com/) で公開。`main` ブランチへの push で自動デプロイ。
+[Cloudflare Pages](https://password-generator-15a.pages.dev/) で公開。`main` ブランチへの push で自動デプロイ。
 
 ## セキュリティ
 
