@@ -40,6 +40,7 @@
 
 ```
 password-generator/
+├── _headers            # Cloudflare Pages HTTP レスポンスヘッダー設定
 ├── index.html          # メイン HTML・全 UI 構造
 ├── css/
 │   └── style.css       # ライト / ダークテーマ デザイン（SCSS コンパイル済み）
@@ -68,9 +69,25 @@ password-generator/
 
 ## セキュリティ
 
-- 乱数生成に `Math.random()` は使用しない
-- クライアントサイドのみで完結し、パスワードを外部へ送信しない
-- DOM 操作は `textContent` を使用し、`innerHTML` への直接代入は行わない（XSS 対策）
+### クライアントサイド
+
+- 乱数生成は `window.crypto.getRandomValues()` のみ使用（`Math.random()` 不使用）
+- 剰余バイアス対策済み（最大バイト値の倍数に収まるまで再試行するアルゴリズムを実装）
+- 完全クライアントサイド完結 — パスワードを外部サーバーへ送信しない
+- DOM 操作は `textContent` を使用し、`innerHTML` への文字列代入は行わない（XSS 対策）
+- `localStorage` / `sessionStorage` にパスワード文字列を保存しない
+- インラインスタイル（`style="..."` 属性）を排除し CSP と整合
+
+### HTTP レスポンスヘッダー（`_headers` で管理）
+
+| ヘッダー | 設定値 | 目的 |
+|---|---|---|
+| `Content-Security-Policy` | `default-src 'self'` ほか | 外部スクリプト・スタイル・通信をブロック |
+| `Strict-Transport-Security` | `max-age=31536000; includeSubDomains` | HTTPS 強制（HSTS） |
+| `X-Frame-Options` | `DENY` | クリックジャッキング防止 |
+| `X-Content-Type-Options` | `nosniff` | MIME スニッフィング防止 |
+| `Referrer-Policy` | `no-referrer` | 外部サイトへのリファラー送信を禁止 |
+| `Permissions-Policy` | camera・mic・geolocation 等を無効化 | 不要な API へのアクセスを禁止 |
 
 ## ブラウザ対応
 

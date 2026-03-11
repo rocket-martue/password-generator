@@ -9,6 +9,7 @@
 ## ファイル構成
 ```
 password-generator/
+├── _headers            # Cloudflare Pages HTTP レスポンスヘッダー設定
 ├── index.html          # メインHTML・全 UI 構造
 ├── css/
 │   └── style.css       # ライト / ダークテーマ デザイン（SCSS コンパイル済み）
@@ -102,8 +103,12 @@ password-generator/
 - Clipboard API: 非同期 `navigator.clipboard.writeText()` を使用
 - XSS 対策: 生成パスワードの表示は `textContent` のみ使用（`innerHTML` への文字列代入禁止）
 - パスワードの永続化禁止: `localStorage` / `sessionStorage` にパスワード文字列は保存しない
-- **CSP（Content Security Policy）**: `<meta http-equiv="Content-Security-Policy">` でスクリプト・スタイル・外部通信をブラウザレベルでブロック
+- **CSP（Content Security Policy）**: `_headers` ファイルで HTTP レスポンスヘッダーとして設定（スキャナー対応）。`<meta>` タグも併用しフォールバックを確保
+- **Strict-Transport-Security**: `max-age=31536000; includeSubDomains` で HTTPS 強制
+- **X-Frame-Options**: `DENY` でクリックジャッキングをブロック（古いブラウザ向け。CSP の `frame-ancestors 'none'` と二重対策）
+- **Permissions-Policy**: カメラ・マイク・位置情報など不要な API を全て無効化
 - **Referrer Policy**: `no-referrer` を設定し、他サイト遷移時にリファラーを送信しない
+- **X-Content-Type-Options**: `nosniff` で MIME スニッフィングを防止
 - インラインスタイル禁止: `style="..."` 属性の使用を排除し CSP と整合させる
 
 ---
@@ -116,7 +121,8 @@ password-generator/
 5. ✅ `app.js` — イベントバインド、UI 連動ロジック、コピー処理、テーマ切り替え
 6. ✅ アクセシビリティ改善（ARIA 属性・コントラスト比・フォーカスリング）
 7. ✅ セキュリティ強化（CSP・Referrer Policy・インラインスタイル排除）
-8. 手動テスト（各プリセット・除外文字・全設定組み合わせ）
+8. ✅ HTTP セキュリティヘッダー設定（`_headers` ファイルで HSTS・CSP・X-Frame-Options・Permissions-Policy を追加）
+9. 手動テスト（各プリセット・除外文字・全設定組み合わせ）
 
 ---
 
