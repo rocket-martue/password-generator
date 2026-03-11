@@ -186,6 +186,11 @@ const applyServicePreset = (presetId) => {
 		elSymbolGrid.classList.remove('disabled');
 	}
 
+	// サービスプリセット選択時は大文字・小文字・数字を必ず ON に戻す
+	elUpper.checked = true;
+	elLower.checked = true;
+	elDigits.checked = true;
+
 	// 注記表示
 	elServiceNote.textContent = preset.note ?? '';
 
