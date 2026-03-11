@@ -176,6 +176,7 @@ const updateStrengthDisplay = () => {
 
 	indicator.className = 'strength-indicator ' + (STRENGTH_CLASSES[level] ?? '');
 	indicator.dataset.level = level;
+	indicator.setAttribute('aria-valuenow', level);
 	strengthLabel.textContent = label;
 };
 

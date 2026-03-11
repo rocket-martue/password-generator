@@ -119,7 +119,7 @@
 						<h3 class="section-title">強度（予測）</h3>
 						<div class="strength-row">
 							<div id="strength-indicator" class="strength-indicator" role="meter" aria-label="パスワード強度"
-								data-level="3"></div>
+								aria-valuemin="0" aria-valuemax="3" aria-valuenow="3" data-level="3"></div>
 							<span id="strength-label" class="strength-label" aria-live="polite">—</span>
 						</div>
 
@@ -147,8 +147,7 @@
 						<p id="error-message" class="error-message" role="alert" aria-live="assertive"></p>
 
 						<!-- 結果 -->
-						<div id="results" aria-label="生成されたパスワード一覧" aria-live="polite"></div>
-
+						<div id="results" role="region" aria-label="生成されたパスワード一覧" aria-live="polite"></div>
 					</section>
 				</div>
 			</main>
