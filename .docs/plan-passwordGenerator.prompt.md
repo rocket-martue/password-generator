@@ -86,8 +86,10 @@ password-generator/
 ---
 
 ## デザイン方針
-- ダークテーマ（背景: #0f0f1a 系、アクセント: グラデーション紫〜青）
-- カードレイアウト（設定パネル + 結果エリアの2カラム or 1カラム）
+- **ライトテーマをデフォルト**（背景: #ffffff 系、アクセント: グラデーション紫〜青）
+- ダークテーマ切り替え対応（背景: #0f0f1a 系）— ヘッダーのトグルボタンで切替、`localStorage` に状態保存
+- OS のカラースキーム設定（`prefers-color-scheme`）を初期値として反映
+- カードレイアウト（設定パネル + 結果エリアの3カラム or 1カラム）
 - トグルスイッチ、スライダー、チェックボックスをカスタムスタイリング
 - コピー・生成時に軽いアニメーション
 
@@ -95,18 +97,26 @@ password-generator/
 
 ## セキュリティ
 - 乱数生成: `window.crypto.getRandomValues()` のみ使用（Math.random 禁止）
+- 剰余バイアス対策: 最大バイト値の倍数に収まるまで再試行するアルゴリズムを実装
 - クライアントサイドのみで完結（サーバー通信なし）
-- Clipboard API: 非同期 navigator.clipboard.writeText() を使用
+- Clipboard API: 非同期 `navigator.clipboard.writeText()` を使用
+- XSS 対策: 生成パスワードの表示は `textContent` のみ使用（`innerHTML` への文字列代入禁止）
+- パスワードの永続化禁止: `localStorage` / `sessionStorage` にパスワード文字列は保存しない
+- **CSP（Content Security Policy）**: `<meta http-equiv="Content-Security-Policy">` でスクリプト・スタイル・外部通信をブラウザレベルでブロック
+- **Referrer Policy**: `no-referrer` を設定し、他サイト遷移時にリファラーを送信しない
+- インラインスタイル禁止: `style="..."` 属性の使用を排除し CSP と整合させる
 
 ---
 
 ## 実装ステップ
-1. `presets.js` — プリセットデータを定義
-2. `generator.js` — 文字プール構築・パスワード生成・強度計算
-3. `index.html` — UI 構造作成
-4. `style.css` — ダークテーマ・モダンデザイン
-5. `app.js` — イベントバインド、UI 連動ロジック、コピー処理
-6. 手動テスト（各プリセット・除外文字・全設定組み合わせ）
+1. ✅ `presets.js` — プリセットデータを定義
+2. ✅ `generator.js` — 文字プール構築・パスワード生成・強度計算（剰余バイアス対策含む）
+3. ✅ `index.html` — UI 構造作成
+4. ✅ `scss/` + `css/style.css` — ライト/ダーク テーマ・モダンデザイン
+5. ✅ `app.js` — イベントバインド、UI 連動ロジック、コピー処理、テーマ切り替え
+6. ✅ アクセシビリティ改善（ARIA 属性・コントラスト比・フォーカスリング）
+7. ✅ セキュリティ強化（CSP・Referrer Policy・インラインスタイル排除）
+8. 手動テスト（各プリセット・除外文字・全設定組み合わせ）
 
 ---
 
@@ -114,4 +124,3 @@ password-generator/
 - バックエンド処理（PHP 等）
 - パスワード保存・履歴機能
 - ユーザーアカウント
-- ダークモード/ライトモード切替（ダーク固定）
