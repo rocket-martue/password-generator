@@ -5,7 +5,8 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="サービス別プリセットに対応した、ブラウザで動作する安全なパスワード生成ツール">
-		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src data:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
+		<meta http-equiv="Content-Security-Policy"
+			content="default-src 'self'; script-src 'self'; style-src 'self'; img-src data:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
 		<meta name="referrer" content="no-referrer">
 		<title>Password Generator</title>
 		<link rel="stylesheet" href="css/style.css">
@@ -24,14 +25,15 @@
 				</button>
 			</header>
 
-		<!-- セキュリティバー -->
-		<div class="security-bar" role="note" aria-label="セキュリティ情報">
-			<ul class="security-strip">
-				<li class="security-item">Web Crypto API で乱数生成（Math.random 不使用）</li>
-				<li class="security-item">完全クライアントサイド完結 — パスワードを外部サーバーへ送信しません</li>
-				<li class="security-item">パスワードを端末に保存しません</li>
-			</ul>
-		</div>
+			<!-- セキュリティバー -->
+			<div class="security-bar" role="note" aria-label="セキュリティ情報">
+				<ul class="security-strip">
+					<li class="security-item">Web Crypto API で乱数生成（Math.random 不使用）</li>
+					<li class="security-item">完全クライアントサイド完結 — パスワードを外部サーバーへ送信しません</li>
+					<li class="security-item">パスワードを端末に保存しません</li>
+					<li class="security-item">カスタムプリセット（記号セットのみ）はブラウザの localStorage に保存されます</li>
+				</ul>
+			</div>
 
 			<main>
 				<div class="main-layout">
@@ -81,7 +83,13 @@
 
 							<label for="service-preset" class="section-title service-preset-label">サービス別</label>
 							<select id="service-preset" class="select" aria-label="サービス別プリセットを選択"></select>
-							<p id="service-preset-note" class="service-note" aria-live="polite"></p>
+							<div class="service-note-row">
+								<p id="service-preset-note" class="service-note" aria-live="polite"></p>
+								<button type="button" id="btn-delete-custom" class="btn btn-danger btn-delete-custom"
+									aria-label="選択中のカスタムプリセットを削除" hidden>削除</button>
+							</div>
+							<button type="button" id="btn-add-custom" class="btn btn-secondary btn-add-custom"
+								aria-label="カスタムプリセットを追加">＋ カスタムを追加</button>
 						</div>
 
 					</section>
@@ -164,6 +172,28 @@
 			</main>
 
 		</div>
+
+		<!-- ── カスタムプリセット追加ダイアログ ── -->
+		<dialog id="dialog-custom-preset" class="custom-preset-dialog" aria-labelledby="dialog-title">
+			<h2 id="dialog-title" class="dialog-title">カスタムプリセットを追加</h2>
+			<div class="dialog-body">
+				<div class="dialog-field">
+					<label for="custom-symbols" class="dialog-label">使用する記号</label>
+					<input type="text" id="custom-symbols" class="input-text" maxlength="100"
+						placeholder="例: !@#$%（空欄 = 記号なし）" autocomplete="off" spellcheck="false">
+					<p class="dialog-field-hint">ASCII 記号のみ使用可能。英数字は除外されます。</p>
+				</div>
+				<div class="dialog-field">
+					<label for="custom-note" class="dialog-label">注記</label>
+					<input type="text" id="custom-note" class="input-text" maxlength="100"
+						placeholder="例: 公式サイトで確認済み（任意）" autocomplete="off" spellcheck="false">
+				</div>
+			</div>
+			<div class="dialog-actions">
+				<button type="button" id="btn-dialog-cancel" class="btn btn-secondary">キャンセル</button>
+				<button type="button" id="btn-dialog-add" class="btn btn-primary">追加する</button>
+			</div>
+		</dialog>
 
 		<script type="module" src="js/app.js"></script>
 	</body>
