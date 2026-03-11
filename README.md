@@ -4,6 +4,7 @@
 
 ## 特徴
 
+- **セキュリティ評価 A+** — [securityheaders.io](https://securityheaders.com/) にて最高評価を取得（HSTS / CSP / X-Frame-Options / Permissions-Policy など全項目グリーン）
 - **サービス別プリセット** — Amazon・Google・GitHub など主要サービスの記号ポリシーを参考値として収録
 - **記号の個別制御** — チェックボックスで使用する記号を 1 文字単位で調整可能
 - **暗号学的に安全な乱数** — `window.crypto.getRandomValues()` を使用（`Math.random()` 不使用）
@@ -66,6 +67,10 @@ password-generator/
 ## ホスティング
 
 [Cloudflare Pages](https://password-generator-15a.pages.dev/) で公開。`main` ブランチへの push で自動デプロイ。
+
+> **securityheaders.io スキャン結果: A+**（2026-03-11）  
+> Strict-Transport-Security / Content-Security-Policy / Permissions-Policy /  
+> Referrer-Policy / X-Content-Type-Options / X-Frame-Options — 全項目グリーン
 
 ## セキュリティ
 

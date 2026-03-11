@@ -122,7 +122,7 @@ password-generator/
 6. ✅ アクセシビリティ改善（ARIA 属性・コントラスト比・フォーカスリング）
 7. ✅ セキュリティ強化（CSP・Referrer Policy・インラインスタイル排除）
 8. ✅ HTTP セキュリティヘッダー設定（`_headers` ファイルで HSTS・CSP・X-Frame-Options・Permissions-Policy を追加）
-9. 手動テスト（各プリセット・除外文字・全設定組み合わせ）
+9. ✅ 手動テスト — securityheaders.io スキャンで **A+** 取得を確認（2026-03-11）
 
 ---
 
