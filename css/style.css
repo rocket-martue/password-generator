@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --bg-base: #ffffff;
   --bg-surface: #f8fafc;
@@ -726,4 +727,43 @@ body {
   font-size: var(--font-size-sm);
   margin-top: 0.5rem;
   min-height: 1.2em;
+}
+
+.app-footer {
+  border-top: 1px solid var(--border-color);
+  padding: 1rem 1.5rem 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.security-strip {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 0.4rem 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.security-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.35rem;
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+.security-item::before {
+  content: "✓";
+  color: var(--accent-solid);
+  font-weight: 700;
+  font-size: 0.85em;
 }/*# sourceMappingURL=style.css.map */

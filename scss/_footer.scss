@@ -1,0 +1,32 @@
+// _footer.scss — セキュリティ情報フッター
+
+.app-footer {
+	border-top: 1px solid var(--border-color);
+	padding: 1rem 1.5rem 1.25rem;
+	margin-top: 0.5rem;
+}
+
+.security-strip {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.4rem 1.75rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.security-item {
+	display: flex;
+	align-items: center;
+	gap: 0.35rem;
+	font-size: var(--font-size-xs);
+	color: var(--text-muted);
+
+	&::before {
+		content: '✓';
+		color: var(--accent-solid);
+		font-weight: 700;
+		font-size: 0.85em;
+	}
+}
