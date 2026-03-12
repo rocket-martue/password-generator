@@ -22,8 +22,8 @@
 	display: flex;
 	align-items: center;
 	gap: 0.3rem;
-	font-size: var(--font-size-xs);
-	color: color-mix(in srgb, var(--accent-green) 80%, var(--text-primary));
+	font-size: var(--font-size-base);
+	// color: color-mix(in srgb, var(--accent-green) 80%, var(--text-primary));
 
 	&::before {
 		content: "✓";

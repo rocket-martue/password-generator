@@ -31,28 +31,68 @@
 		justify-content: center;
 		width: 100%;
 		aspect-ratio: 1;
-		background: var(--bg-input);
-		border: 1px solid var(--border-color);
+		background: rgba(255, 255, 255, 0.5);
+		border: 1px solid rgba(255, 255, 255, 0.65);
 		border-radius: var(--radius-sm);
 		font-size: var(--font-size-sm);
 		font-family: monospace;
 		color: var(--text-secondary);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.8) inset,
+			0 2px 6px rgba(0, 0, 0, 0.05);
 		transition: all var(--transition);
 		user-select: none;
 	}
 
 	input:checked + span {
-		background: rgba(124, 58, 237, 0.2);
-		border-color: var(--accent-solid);
-		color: var(--text-primary);
+		background: color-mix(in srgb, var(--accent-solid) 18%, transparent);
+		border-color: color-mix(in srgb, var(--accent-solid) 50%, transparent);
+		color: var(--accent-solid);
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.6) inset,
+			0 2px 8px color-mix(in srgb, var(--accent-solid) 18%, transparent);
 	}
 
 	&:hover span {
-		border-color: var(--accent-solid);
+		background: rgba(255, 255, 255, 0.7);
+		border-color: color-mix(in srgb, var(--accent-solid) 50%, transparent);
+		transform: translateY(-1px);
+		box-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.9) inset,
+			0 4px 10px rgba(0, 0, 0, 0.08);
 	}
 
 	input:focus-visible + span {
 		outline: 2px solid var(--accent-solid);
 		outline-offset: 2px;
+	}
+
+	[data-theme="dark"] & {
+		span {
+			background: rgba(255, 255, 255, 0.07);
+			border-color: rgba(255, 255, 255, 0.1);
+			box-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.08) inset,
+				0 2px 6px rgba(0, 0, 0, 0.25);
+		}
+
+		input:checked + span {
+			background: color-mix(in srgb, var(--accent-solid) 20%, transparent);
+			border-color: color-mix(in srgb, var(--accent-solid) 50%, transparent);
+			color: var(--accent-solid);
+			box-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.1) inset,
+				0 2px 8px color-mix(in srgb, var(--accent-solid) 20%, transparent);
+		}
+
+		&:hover span {
+			background: rgba(255, 255, 255, 0.12);
+			border-color: color-mix(in srgb, var(--accent-solid) 40%, transparent);
+			box-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.1) inset,
+				0 4px 10px rgba(0, 0, 0, 0.35);
+		}
 	}
 }
