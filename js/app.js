@@ -20,7 +20,6 @@ const elDigits = document.getElementById('use-digits');
 const elSymbolToggle = document.getElementById('use-symbols');
 const elSymbolGrid = document.getElementById('symbol-grid');
 const elGenericPreset = document.getElementById('generic-preset');
-const elServicePreset = document.getElementById('service-preset');
 const elServiceNote = document.getElementById('service-preset-note');
 const elDeleteCustomBtn = document.getElementById('btn-delete-custom');
 const elAddCustomBtn = document.getElementById('btn-add-custom');
@@ -54,58 +53,35 @@ const initGenericPresets = () => {
 };
 
 /**
- * サービス別プリセットの <option> を <optgroup> でグループ分けして生成（再描画対応）
+ * サービス別・レンタルサーバー別・カスタムのプリセットボタンを生成（再描画対応）
  * カスタムプリセットを追加・削除するたびに呼び出す。
  */
-const renderServicePresets = () => {
-	const currentValue = elServicePreset.value;
-	elServicePreset.innerHTML = '';
+const createServicePresetBtn = (preset, group) => {
+	const btn = document.createElement('button');
+	btn.type = 'button';
+	btn.className = 'preset-btn';
+	btn.dataset.presetId = preset.id;
+	btn.dataset.presetGroup = group;
+	btn.textContent = preset.label;
+	btn.addEventListener('click', () => applyServicePreset(preset));
+	return btn;
+};
 
-	const defaultOpt = document.createElement('option');
-	defaultOpt.value = '';
-	defaultOpt.textContent = '— サービスを選択 —';
-	elServicePreset.appendChild(defaultOpt);
+const renderServiceButtons = () => {
+	// サービス/カスタムボタンのみ削除
+	elGenericPreset
+		.querySelectorAll('[data-preset-group="service"], [data-preset-group="custom"]')
+		.forEach(el => el.remove());
 
-	// 主要サービス
-	const groupService = document.createElement('optgroup');
-	groupService.label = '主要サービス';
-	SERVICE_PRESETS.forEach(preset => {
-		const opt = document.createElement('option');
-		opt.value = preset.id;
-		opt.textContent = preset.label;
-		groupService.appendChild(opt);
+	// SERVICE_PRESETS + HOSTING_PRESETS
+	[...SERVICE_PRESETS, ...HOSTING_PRESETS].forEach(preset => {
+		elGenericPreset.appendChild(createServicePresetBtn(preset, 'service'));
 	});
-	elServicePreset.appendChild(groupService);
 
-	// レンタルサーバー
-	const groupHosting = document.createElement('optgroup');
-	groupHosting.label = 'レンタルサーバー';
-	HOSTING_PRESETS.forEach(preset => {
-		const opt = document.createElement('option');
-		opt.value = preset.id;
-		opt.textContent = preset.label;
-		groupHosting.appendChild(opt);
+	// カスタムプリセット
+	loadCustomPresets().forEach(preset => {
+		elGenericPreset.appendChild(createServicePresetBtn(preset, 'custom'));
 	});
-	elServicePreset.appendChild(groupHosting);
-
-	// カスタム
-	const customs = loadCustomPresets();
-	if (customs.length > 0) {
-		const groupCustom = document.createElement('optgroup');
-		groupCustom.label = 'カスタム';
-		customs.forEach(preset => {
-			const opt = document.createElement('option');
-			opt.value = preset.id;
-			opt.textContent = preset.label;
-			groupCustom.appendChild(opt);
-		});
-		elServicePreset.appendChild(groupCustom);
-	}
-
-	// 選択状態を復元（削除された場合は空に戻る）
-	if ([...elServicePreset.options].some(o => o.value === currentValue)) {
-		elServicePreset.value = currentValue;
-	}
 };
 
 /** 記号チェックボックスグリッドを生成 */
@@ -151,27 +127,17 @@ const applyGenericPreset = (preset) => {
 	document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
 	document.querySelector(`[data-preset-id="${preset.id}"]`)?.classList.add('active');
 
-	// サービスプリセットをリセット
-	elServicePreset.value = '';
+	// note・削除ボタンをリセット
 	elServiceNote.textContent = '';
+	elDeleteCustomBtn.hidden = true;
 
 	updateStrengthDisplay();
 };
 
-/** サービス別プリセット適用 */
-const applyServicePreset = (presetId) => {
-	if (!presetId) {
-		elServiceNote.textContent = '';
-		elDeleteCustomBtn.hidden = true;
-		return;
-	}
-
-	const allPresets = [...SERVICE_PRESETS, ...HOSTING_PRESETS, ...loadCustomPresets()];
-	const preset = allPresets.find(p => p.id === presetId);
-	if (!preset) return;
-
+/** サービス別・レンタルサーバー別・カスタムプリセット適用 */
+const applyServicePreset = (preset) => {
 	// カスタムプリセットのみ削除ボタンを表示
-	elDeleteCustomBtn.hidden = !presetId.startsWith('custom-');
+	elDeleteCustomBtn.hidden = !preset.id.startsWith('custom-');
 
 	const symbolSet = new Set(preset.symbols.replace(/\s/g, ''));
 	getSymbolCheckboxes().forEach(cb => {
@@ -186,7 +152,7 @@ const applyServicePreset = (presetId) => {
 		elSymbolGrid.classList.remove('disabled');
 	}
 
-	// サービスプリセット選択時は大文字・小文字・数字を必ず ON に戻す
+	// 大文字・小文字・数字を必ず ON に戻す
 	elUpper.checked = true;
 	elLower.checked = true;
 	elDigits.checked = true;
@@ -194,8 +160,9 @@ const applyServicePreset = (presetId) => {
 	// 注記表示
 	elServiceNote.textContent = preset.note ?? '';
 
-	// 汎用プリセットのアクティブを外す
+	// アクティブ状態
 	document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+	document.querySelector(`[data-preset-id="${preset.id}"]`)?.classList.add('active');
 
 	updateStrengthDisplay();
 };
@@ -279,9 +246,8 @@ const handleDialogAdd = () => {
 	closeDialog();
 	const customs = loadCustomPresets();
 	const newPreset = customs[customs.length - 1];
-	renderServicePresets();
-	elServicePreset.value = newPreset.id;
-	applyServicePreset(newPreset.id);
+	renderServiceButtons();
+	applyServicePreset(newPreset);
 };
 
 // ─── ヘルパー ──────────────────────────────────────────────────────────────
@@ -408,21 +374,15 @@ elAmbiguousBtn.addEventListener('click', () => {
 	updateStrengthDisplay();
 });
 
-/** サービスプリセット */
-elServicePreset.addEventListener('change', () => {
-	applyServicePreset(elServicePreset.value);
-});
-
 /** カスタムプリセット削除ボタン */
 elDeleteCustomBtn.addEventListener('click', () => {
-	const id = elServicePreset.value;
-	if (!id.startsWith('custom-')) return;
+	const activeBtn = elGenericPreset.querySelector('.preset-btn.active[data-preset-group="custom"]');
+	if (!activeBtn) return;
+	const id = activeBtn.dataset.presetId;
 	deleteCustomPreset(id);
-	renderServicePresets();
-	elServicePreset.value = '';
+	renderServiceButtons();
 	elServiceNote.textContent = '';
 	elDeleteCustomBtn.hidden = true;
-	applyServicePreset('');
 });
 
 /** カスタムプリセット追加ボタン */
@@ -487,6 +447,6 @@ document.getElementById('btn-theme-toggle')?.addEventListener('click', () => {
 // ─── 起動 ──────────────────────────────────────────────────────────────────
 initTheme();
 initGenericPresets();
-renderServicePresets();
+renderServiceButtons();
 initSymbolGrid();
 updateStrengthDisplay();

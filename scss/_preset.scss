@@ -5,12 +5,12 @@
 .preset-group {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.5rem;
-	margin-bottom: 0.75rem;
+	gap: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 .preset-btn {
-	padding: 0.3rem 0.75rem;
+	padding: 0.3em 0.75em;
 	background: rgba(255, 255, 255, 0.45);
 	color: var(--text-secondary);
 	border: 1px solid rgba(255, 255, 255, 0.65);
@@ -73,45 +73,10 @@
 	}
 }
 
-// ── サービス別セレクト ────────────────────────────────────────
-
-.select {
-	width: 100%;
-	margin-top: 0.5em;
-	padding: 0.5rem 0.75rem;
-	background: var(--bg-input);
-	color: var(--text-primary);
-	border: 1px solid var(--border-color);
-	border-radius: var(--radius-sm);
-	font-size: var(--font-size-sm);
-	cursor: pointer;
-	transition: border-color var(--transition);
-	appearance: none;
-	// SVG 矢印アイコン（テーマ別変数で管理）
-	background-image: var(--select-arrow);
-	background-repeat: no-repeat;
-	background-position: right 0.75rem center;
-	padding-right: 2rem;
-
-	&:focus {
-		outline: none;
-	}
-
-	&:focus-visible {
-		outline: 2px solid var(--accent-solid);
-		outline-offset: 2px;
-		border-color: var(--accent-solid);
-	}
-}
-
-.service-preset-label {
-	margin-top: 0.75rem;
-}
-
 .service-note {
 	font-size: var(--font-size-xs);
 	color: var(--text-muted);
-	margin-top: 0.4rem;
+	margin-top: 0.4em;
 	min-height: 1.2em;
 }
 
@@ -120,8 +85,7 @@
 .service-note-row {
 	display: flex;
 	align-items: flex-start;
-	gap: 0.5rem;
-	margin-block: 0.8em;
+	gap: 0.5em;
 
 	.service-note {
 		flex: 1;
@@ -132,7 +96,7 @@
 // ── カスタムを追加ボタン ──────────────────────────────────────
 
 .btn-add-custom {
-	margin-top: 0.5rem;
+	margin-top: 0.5em;
 	font-size: var(--font-size-xs);
 }
 
@@ -140,7 +104,7 @@
 
 .btn-delete-custom {
 	flex-shrink: 0;
-	padding: 0.2rem 0.6rem;
+	padding: 0.2em 0.6em;
 	font-size: var(--font-size-xs);
 	white-space: nowrap;
 }
@@ -158,14 +122,6 @@
 		outline: 2px solid var(--danger);
 		outline-offset: 2px;
 	}
-}
-
-// ── <optgroup> スタイル ───────────────────────────────────────
-
-.select optgroup {
-	color: var(--text-muted);
-	font-size: var(--font-size-sm);
-	font-weight: 600;
 }
 
 // ── プライマリボタン（ダイアログ「追加する」用） ─────────────
