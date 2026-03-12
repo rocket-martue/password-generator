@@ -3,7 +3,7 @@
 // ── 共通ベース ────────────────────────────────────────────────
 
 .btn {
-	padding: 0.5rem 1rem;
+	padding: 0.5em 1em;
 	border: 1px solid rgba(255, 255, 255, 0.28);
 	border-radius: var(--radius-lg);
 	font-size: var(--font-size-sm);
@@ -55,7 +55,7 @@
 
 .btn-generate {
 	width: 100%;
-	padding: 0.85rem;
+	padding: 0.85em;
 	background: rgba(255, 255, 255, 0.2);
 	color: var(--text-primary);
 	border: 2px solid rgba(50, 183, 216, 0.2);
@@ -73,7 +73,7 @@
 		transform var(--transition),
 		box-shadow var(--transition),
 		background var(--transition);
-	margin-top: 0.75rem;
+	margin-top: 0.75em;
 
 	&:hover {
 		background: rgba(255, 255, 255, 0.32);
@@ -101,7 +101,7 @@
 // ── コピーボタン ──────────────────────────────────────────────
 
 .btn-copy {
-	padding: 0.3rem 0.75rem;
+	padding: 0.3em 0.75em;
 	background: rgba(255, 255, 255, 0.18);
 	color: var(--text-secondary);
 	border: 1px solid rgba(50, 183, 216, 0.2);
