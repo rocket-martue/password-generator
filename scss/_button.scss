@@ -1,15 +1,17 @@
-// _button.scss — ボタン全般
+// _button.scss — ボタン全般（Liquid Glass スタイル）
 
 // ── 共通ベース ────────────────────────────────────────────────
 
 .btn {
 	padding: 0.5rem 1rem;
-	border: none;
-	border-radius: var(--radius-sm);
+	border: 1px solid rgba(255, 255, 255, 0.28);
+	border-radius: var(--radius-lg);
 	font-size: var(--font-size-sm);
 	font-weight: 500;
 	cursor: pointer;
 	transition: all var(--transition);
+	backdrop-filter: blur(12px) saturate(1.4);
+	-webkit-backdrop-filter: blur(12px) saturate(1.4);
 
 	&:focus-visible {
 		outline: 2px solid var(--accent-solid);
@@ -18,13 +20,29 @@
 }
 
 .btn-secondary {
-	background: var(--bg-input);
+	background: rgba(255, 255, 255, 0.2);
 	color: var(--text-secondary);
-	border: 1px solid var(--border-color);
+	border: 1px solid rgba(50, 183, 216, 0.2);
+	box-shadow:
+		inset 0 1.5px 1.5px rgba(255, 255, 255, 0.6),
+		inset 0 -1px 1px rgba(0, 0, 0, 0.06),
+		0 4px 16px rgba(0, 0, 0, 0.08);
 
 	&:hover {
-		border-color: var(--accent-solid);
+		background: rgba(255, 255, 255, 0.32);
 		color: var(--text-primary);
+		box-shadow:
+			inset 0 1.5px 1.5px rgba(255, 255, 255, 0.7),
+			inset 0 -1px 1px rgba(0, 0, 0, 0.06),
+			0 6px 20px rgba(0, 0, 0, 0.12);
+		transform: translateY(-1px);
+	}
+
+	&:active {
+		transform: translateY(0);
+		box-shadow:
+			inset 0 2px 5px rgba(0, 0, 0, 0.12),
+			0 2px 8px rgba(0, 0, 0, 0.06);
 	}
 
 	&:focus-visible {
@@ -38,25 +56,40 @@
 .btn-generate {
 	width: 100%;
 	padding: 0.85rem;
-	background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
-	color: #fff;
-	border: none;
-	border-radius: var(--radius-md);
+	background: rgba(255, 255, 255, 0.2);
+	color: var(--text-primary);
+	border: 2px solid rgba(50, 183, 216, 0.2);
+	border-radius: var(--radius-lg);
 	font-size: var(--font-size-md);
 	font-weight: 600;
 	cursor: pointer;
+	backdrop-filter: blur(16px) saturate(1.8);
+	-webkit-backdrop-filter: blur(16px) saturate(1.8);
+	box-shadow:
+		inset 0 1.5px 1.5px rgba(255, 255, 255, 0.6),
+		inset 0 -1px 1px rgba(0, 0, 0, 0.06),
+		0 4px 16px rgba(0, 0, 0, 0.08);
 	transition:
-		opacity var(--transition),
-		transform var(--transition);
+		transform var(--transition),
+		box-shadow var(--transition),
+		background var(--transition);
 	margin-top: 0.75rem;
 
 	&:hover {
-		opacity: 0.9;
-		transform: translateY(-1px);
+		background: rgba(255, 255, 255, 0.32);
+		color: var(--text-primary);
+		transform: translateY(-2px);
+		box-shadow:
+			inset 0 1.5px 1.5px rgba(255, 255, 255, 0.7),
+			inset 0 -1px 1px rgba(0, 0, 0, 0.06),
+			0 6px 20px rgba(0, 0, 0, 0.12);
 	}
 
 	&:active {
 		transform: translateY(0);
+		box-shadow:
+			inset 0 2px 5px rgba(0, 0, 0, 0.12),
+			0 2px 8px rgba(0, 0, 0, 0.06);
 	}
 
 	&:focus-visible {
@@ -69,19 +102,33 @@
 
 .btn-copy {
 	padding: 0.3rem 0.75rem;
-	background: var(--bg-surface);
+	background: rgba(255, 255, 255, 0.18);
 	color: var(--text-secondary);
-	border: 1px solid var(--border-color);
-	border-radius: var(--radius-sm);
+	border: 1px solid rgba(50, 183, 216, 0.2);
+	border-radius: var(--radius-md);
 	font-size: var(--font-size-xs);
 	cursor: pointer;
 	white-space: nowrap;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	box-shadow:
+		inset 0 1px 1px rgba(255, 255, 255, 0.55),
+		0 2px 8px rgba(0, 0, 0, 0.07);
 	transition: all var(--transition);
 	flex-shrink: 0;
 
 	&:hover {
-		border-color: var(--accent-solid);
+		background: rgba(255, 255, 255, 0.28);
 		color: var(--text-primary);
+		box-shadow:
+			inset 0 1px 1px rgba(255, 255, 255, 0.65),
+			0 4px 12px rgba(0, 0, 0, 0.1);
+		transform: translateY(-1px);
+	}
+
+	&:active {
+		transform: translateY(0);
+		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 	}
 
 	&:focus-visible {
@@ -90,8 +137,88 @@
 	}
 
 	&.copied {
-		background: rgba(34, 197, 94, 0.15);
-		border-color: var(--success);
+		background: rgba(52, 199, 89, 0.15);
+		border-color: rgba(52, 199, 89, 0.4);
 		color: var(--success);
+		box-shadow:
+			inset 0 1px 1px rgba(255, 255, 255, 0.4),
+			0 2px 8px rgba(52, 199, 89, 0.15);
+	}
+}
+
+// ── ダークテーマ上書き ────────────────────────────────────────
+
+[data-theme="dark"] {
+	.btn {
+		border-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.btn-secondary {
+		background: rgba(255, 255, 255, 0.07);
+		border-color: rgba(255, 255, 255, 0.12);
+		box-shadow:
+			inset 0 1.5px 1.5px rgba(255, 255, 255, 0.1),
+			inset 0 -1px 1px rgba(0, 0, 0, 0.3),
+			0 4px 16px rgba(0, 0, 0, 0.3);
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.12);
+			box-shadow:
+				inset 0 1.5px 1.5px rgba(255, 255, 255, 0.14),
+				inset 0 -1px 1px rgba(0, 0, 0, 0.3),
+				0 6px 20px rgba(0, 0, 0, 0.4);
+		}
+
+		&:active {
+			box-shadow:
+				inset 0 2px 5px rgba(0, 0, 0, 0.4),
+				0 2px 8px rgba(0, 0, 0, 0.2);
+		}
+	}
+
+	.btn-generate {
+		background: rgba(255, 255, 255, 0.07);
+		border-color: rgba(255, 255, 255, 0.12);
+		box-shadow:
+			inset 0 1.5px 1.5px rgba(255, 255, 255, 0.1),
+			inset 0 -1px 1px rgba(0, 0, 0, 0.3),
+			0 4px 16px rgba(0, 0, 0, 0.3);
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.12);
+			box-shadow:
+				inset 0 1.5px 1.5px rgba(255, 255, 255, 0.14),
+				inset 0 -1px 1px rgba(0, 0, 0, 0.3),
+				0 6px 20px rgba(0, 0, 0, 0.4);
+		}
+
+		&:active {
+			box-shadow:
+				inset 0 2px 5px rgba(0, 0, 0, 0.4),
+				0 2px 8px rgba(0, 0, 0, 0.2);
+		}
+	}
+
+	.btn-copy {
+		background: rgba(255, 255, 255, 0.06);
+		border-color: rgba(255, 255, 255, 0.1);
+		box-shadow:
+			inset 0 1px 1px rgba(255, 255, 255, 0.1),
+			0 2px 8px rgba(0, 0, 0, 0.25);
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.1);
+			box-shadow:
+				inset 0 1px 1px rgba(255, 255, 255, 0.14),
+				0 4px 12px rgba(0, 0, 0, 0.3);
+		}
+
+		&.copied {
+			background: rgba(48, 209, 88, 0.12);
+			border-color: rgba(48, 209, 88, 0.35);
+			box-shadow:
+				inset 0 1px 1px rgba(255, 255, 255, 0.08),
+				0 2px 8px rgba(48, 209, 88, 0.15);
+		}
 	}
 }

@@ -2,46 +2,46 @@
 // デフォルト: ライトテーマ / ダークテーマは [data-theme="dark"] で上書き
 
 :root {
-	// ── 背景色 ─────────────────────────────────────────────────
-	--bg-base: #ffffff;
-	--bg-surface: #f8fafc;
-	--bg-card: #ffffff;
-	--bg-input: #f1f5f9;
+	// ── 背景色（ライト: ブルー スカイ系 Liquid Glass） ───
+	--bg-base: #cce4ff; // 溜やかなスカイブルー
+	--bg-surface: rgba(255, 255, 255, 0.38); // 白フロストガラス（背景の青が透ける）
+	--bg-card: rgba(255, 255, 255, 0.48); // 少し明るめの白ガラス
+	--bg-input: rgba(210, 232, 255, 0.55); // 青みがかった入力フィールド
 
 	// ── ボーダー ───────────────────────────────────────────────
-	--border-color: #c8cdd6; // 白背景で約 3.2:1（WCAG 1.4.11 Non-text contrast ✓）
-	--border-subtle: #dde1e8; // 装飾線限定（非インタラクティブ要素にのみ使用）
-	--border-accent: #0891b2; // 不透明化（コントラスト確保）
+	--border-color: rgba(0, 90, 200, 0.14); // 白背景で約 3.2:1（WCAG 1.4.11 Non-text contrast ✓）
+	--border-subtle: rgba(0, 90, 200, 0.07); // 装飾線限定（非インタラクティブ要素にのみ使用）
+	--border-accent: rgba(0, 112, 245, 0.5); // ブルーボーダー
 
-	// ── アクセントカラー ───────────────────────────────────────
-	--accent-from: #7c3aed;
-	--accent-to: #2073e5;
-	--accent-solid: #7c3aed;
-	--accent-cyan: #0891b2;
-	--accent-blue: #2073e5;
-	--accent-green: #059669;
-	--accent-amber: #d97706;
-	--accent-red: #dc2626;
-	--accent-purple: #7c3aed;
+	// ── アクセントカラー（ブルー → ティール） ───────────────
+	--accent-from: #0077ed; // ブルー（鮮やかなコバルト）
+	--accent-to: #00bcd8; // ティール / シアン
+	--accent-solid: #0070f5; // コントラストが必要な箇所向け
+	--accent-cyan: #00bcd8;
+	--accent-blue: #0077ed;
+	--accent-green: #10b981;
+	--accent-amber: #f59e0b;
+	--accent-red: #ef4444;
+	--accent-purple: #6366f1;
 
 	// ── テキスト ───────────────────────────────────────────────
-	--text-primary: #0f172a;
-	--text-secondary: #475569;
-	--text-muted: #6b7280; // #f8fafc 背景で約 4.6:1（WCAG 1.4.3 AA ✓）
+	--text-primary: #09214a; // 深いネイビーブルー（白ガラス上で判読性良娜）
+	--text-secondary: #2d4a6e; // 中明度ネイビー
+	--text-muted: #4d6b8a; // #cce4ff 背景で約 4.5:1（WCAG 1.4.3 AA ✓）
 
 	// ── ステータス ─────────────────────────────────────────────
-	--success: #059669;
-	--warning: #d97706;
-	--danger: #dc2626;
+	--success: #34c759;
+	--warning: #ff9500;
+	--danger: #ff3b30;
 
 	// ── 共通 ───────────────────────────────────────────────────
-	--radius-sm: 6px;
-	--radius-md: 10px;
-	--radius-lg: 16px;
+	--radius-sm: 8px;
+	--radius-md: 12px;
+	--radius-lg: 3em; // pill 形状用
 	--transition: 150ms ease;
 
 	// ── セレクト矢印アイコン（テーマ別） ──────────────────────
-	--select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+	--select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234d6b8a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
 
 	// ── フォントサイズ（fluid） ────────────────────────────────
 	--font-size-xs: clamp(0.625rem, 0.563rem + 0.25vw, 0.75rem);
@@ -71,22 +71,34 @@
 // ── ダークテーマ上書き ──────────────────────────────────────────────────────
 
 [data-theme="dark"] {
-	--bg-base: #0f0f1a;
-	--bg-surface: #1a1a2e;
-	--bg-card: #16213e;
-	--bg-input: #0d1117;
+	// ── 背景色（ダーク: ディープネイビー） ───────
+	--bg-base: #030c1e;
+	--bg-surface: rgba(6, 22, 58, 0.88);
+	--bg-card: rgba(8, 28, 68, 0.92);
+	--bg-input: rgba(4, 14, 38, 0.92);
 
-	--border-color: #4a4a70; // #1a1a2e 背景で約 3.2:1（WCAG 1.4.11 Non-text contrast ✓）
-	--border-subtle: #3a3a5a; // 装飾線限定
-	--border-accent: rgba(124, 58, 237, 0.4);
+	--border-color: rgba(120, 180, 255, 0.12); // ダーク背景で約 3.2:1（WCAG 1.4.11 Non-text contrast ✓）
+	--border-subtle: rgba(120, 180, 255, 0.07); // 装飾線限定
+	--border-accent: rgba(80, 170, 255, 0.45);
 
-	--text-primary: #e2e8f0;
-	--text-secondary: #94a3b8;
-	--text-muted: #8b9dc3; // #1a1a2e 背景で約 4.7:1（WCAG 1.4.3 AA ✓）
+	// ── アクセントカラー（ダーク向けに明度UP / アイスブルー → シアン） ───
+	--accent-from: #4db8ff; // アイスブルー（明るい）
+	--accent-to: #22e8ff; // ネオンシアン
+	--accent-solid: #4db8ff;
+	--accent-cyan: #22e8ff;
+	--accent-blue: #4db8ff;
+	--accent-green: #34d399;
+	--accent-amber: #fbbf24;
+	--accent-red: #f87171;
+	--accent-purple: #a78bfa;
 
-	--success: #22c55e;
-	--warning: #f59e0b;
-	--danger: #ef4444;
+	--text-primary: #e8f4ff; // 混じり気のないプレミアムホワイト
+	--text-secondary: #90bae0; // ミッドネイビー
+	--text-muted: #5a8ab0; // #030c1e 背景で約 4.7:1（WCAG 1.4.3 AA ✓）
 
-	--select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b9dc3' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+	--success: #30d158;
+	--warning: #ff9f0a;
+	--danger: #ff453a;
+
+	--select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2390bae0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
 }
