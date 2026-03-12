@@ -473,8 +473,8 @@ const applyTheme = (isDark) => {
 
 const initTheme = () => {
 	const stored = localStorage.getItem(THEME_STORAGE_KEY);
-	const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-	const isDark = stored !== null ? stored === DARK_THEME : (prefersDark || true);
+	// localStorage 未設定の場合はダークをデフォルトとする（OS設定に関わらず）
+	const isDark = stored !== null ? stored === DARK_THEME : true;
 	applyTheme(isDark);
 };
 
