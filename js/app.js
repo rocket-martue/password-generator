@@ -390,7 +390,7 @@ elLengthSlider.addEventListener('input', () => {
 });
 
 elLengthNumber.addEventListener('input', () => {
-	const val = Math.min(64, Math.max(8, parseInt(elLengthNumber.value, 10) || 8));
+	const val = Math.min(128, Math.max(8, parseInt(elLengthNumber.value, 10) || 8));
 	elLengthNumber.value = val;
 	elLengthSlider.value = val;
 	updateStrengthDisplay();
