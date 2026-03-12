@@ -27,23 +27,28 @@
 	}
 
 	&[data-level="0"]::after {
-		width: 25%;
-		background: var(--danger);
+		width: 20%;
+		background: var(--danger); // 非常に脆弱: 赤
 	}
 
 	&[data-level="1"]::after {
-		width: 50%;
-		background: var(--warning);
+		width: 40%;
+		background: var(--warning); // 脆弱: オレンジ
 	}
 
 	&[data-level="2"]::after {
-		width: 75%;
-		background: var(--success);
+		width: 60%;
+		background: var(--caution); // 普通: 黄
 	}
 
 	&[data-level="3"]::after {
+		width: 80%;
+		background: var(--success); // 強力: 緑
+	}
+
+	&[data-level="4"]::after {
 		width: 100%;
-		background: linear-gradient(90deg, var(--accent-from), var(--accent-to));
+		background: linear-gradient(90deg, var(--accent-from), var(--accent-to)); // 非常に強力: グラデーション
 	}
 }
 

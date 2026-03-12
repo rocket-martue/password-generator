@@ -92,11 +92,13 @@ export const generatePasswords = (options) => {
  * パスワード強度をエントロピーで評価する
  *
  * エントロピー = log2(文字プールサイズ) × パスワード長
+ * 文字種が3種類未満の場合は level 4（非常に強力）に到達しない。
+ * 英字だけ・数字だけなどの単一・2種類構成はルールベース攻撃に弱いため制限する。
  *
  * @param {string} pool   文字プール
  * @param {number} length パスワード長
- * @returns {{ label: string, level: 0|1|2|3 }}
- *   level: 0=弱, 1=普通, 2=強, 3=非常に強い
+ * @returns {{ label: string, level: 0|1|2|3|4 }}
+ *   level: 0=非常に脆弱, 1=脆弱, 2=普通, 3=強力, 4=非常に強力
  */
 export const calcStrength = (pool, length) => {
 	if (pool.length === 0 || length === 0) {
@@ -105,8 +107,25 @@ export const calcStrength = (pool, length) => {
 
 	const entropy = Math.log2(pool.length) * length;
 
-	if (entropy < 40) return { label: '弱', level: 0 };
-	if (entropy < 60) return { label: '普通', level: 1 };
-	if (entropy < 80) return { label: '強', level: 2 };
-	return { label: '非常に強い', level: 3 };
+	// 使用している文字カテゴリ数を pool の内容から判定する
+	const categoryCount = [
+		/[A-Z]/.test(pool),
+		/[a-z]/.test(pool),
+		/[0-9]/.test(pool),
+		/[^A-Za-z0-9]/.test(pool),
+	].filter(Boolean).length;
+
+	// 文字種が3種類未満なら「非常に強力」には到達させない
+	const maxLevel = categoryCount >= 3 ? 4 : 3;
+
+	let rawLevel;
+	if (entropy < 30) rawLevel = 0;
+	else if (entropy < 55) rawLevel = 1;
+	else if (entropy < 70) rawLevel = 2;
+	else if (entropy < 96) rawLevel = 3;
+	else rawLevel = 4;
+
+	const level = Math.min(rawLevel, maxLevel);
+	const LABELS = ['非常に脆弱', '脆弱', '普通', '強力', '非常に強力'];
+	return { label: LABELS[level], level };
 };

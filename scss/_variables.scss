@@ -32,6 +32,7 @@
 	// ── ステータス ─────────────────────────────────────────────
 	--success: #34c759;
 	--warning: #ff9500;
+	--caution: #ca8a04; // 黄: level 2（普通）に使用
 	--danger: #ff3b30;
 
 	// ── 共通 ───────────────────────────────────────────────────
@@ -98,6 +99,7 @@
 
 	--success: #30d158;
 	--warning: #ff9f0a;
+	--caution: #fbbf24; // 黄: level 2（普通）に使用
 	--danger: #ff453a;
 
 	--select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2390bae0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");

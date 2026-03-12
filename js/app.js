@@ -275,7 +275,13 @@ const getCurrentOptions = () => ({
 
 // ─── 強度表示 ──────────────────────────────────────────────────────────────
 
-const STRENGTH_CLASSES = ['strength-weak', 'strength-fair', 'strength-strong', 'strength-very-strong'];
+const STRENGTH_CLASSES = [
+	'strength-very-weak',   // level 0: 非常に脆弱
+	'strength-weak',        // level 1: 脆弱
+	'strength-fair',        // level 2: 普通
+	'strength-strong',      // level 3: 強力
+	'strength-very-strong', // level 4: 非常に強力
+];
 
 const updateStrengthDisplay = () => {
 	const opts = getCurrentOptions();

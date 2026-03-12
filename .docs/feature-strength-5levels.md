@@ -67,11 +67,11 @@ const STRENGTH_CLASSES = [
 
 | level | ラベル | エントロピー閾値 | 根拠 |
 |---|---|---|---|
-| 0 | 非常に脆弱 | < 28 bit | 辞書攻撃・ブルートフォースで即突破 |
-| 1 | 脆弱 | < 40 bit | 現行の「弱」基準を継承 |
-| 2 | 普通 | < 60 bit | 現行の「普通」基準を継承 |
-| 3 | 強力 | < 80 bit | 現行の「強」基準を継承 |
-| 4 | 非常に強力 | ≥ 80 bit | 現行の「非常に強い」基準を継承 |
+| 0 | 非常に脆弱 | < 30 bit | 辞書攻撃・ブルートフォースで即突破 |
+| 1 | 脆弱 | < 55 bit | 現行の「弱」基準を継承 |
+| 2 | 普通 | < 70 bit | 現行の「普通」基準を継承 |
+| 3 | 強力 | < 90 bit | 現行の「強」基準を継承 |
+| 4 | 非常に強力 | ≥ 90 bit | 現行の「非常に強い」基準を継承 |
 
 #### 変更後コード
 
@@ -87,10 +87,10 @@ export const calcStrength = (pool, length) => {
 
   const entropy = Math.log2(pool.length) * length;
 
-  if (entropy < 28) return { label: '非常に脆弱', level: 0 };
-  if (entropy < 40) return { label: '脆弱',       level: 1 };
-  if (entropy < 60) return { label: '普通',        level: 2 };
-  if (entropy < 80) return { label: '強力',        level: 3 };
+  if (entropy < 30) return { label: '非常に脆弱', level: 0 };
+  if (entropy < 55) return { label: '脆弱',       level: 1 };
+  if (entropy < 70) return { label: '普通',        level: 2 };
+  if (entropy < 90) return { label: '強力',        level: 3 };
   return              { label: '非常に強力',      level: 4 };
 };
 ```
@@ -210,10 +210,10 @@ const STRENGTH_CLASSES = [
 
 | 確認項目 | 確認方法 |
 |---|---|
-| level 0（非常に脆弱）が表示される | 長さ6・数字のみ → エントロピー ≈ 20 bit |
-| level 1（脆弱）が表示される | 長さ8・小文字のみ → エントロピー ≈ 38 bit |
-| level 2（普通）が表示される | 長さ10・英数字 → エントロピー ≈ 50 bit |
-| level 3（強力）が表示される | 長さ12・英数字＋記号 → エントロピー ≈ 72 bit |
+| level 0（非常に脆弱）が表示される | 長さ6・数字のみ → エントロピー ≈ 30 bit |
+| level 1（脆弱）が表示される | 長さ8・小文字のみ → エントロピー ≈ 55 bit |
+| level 2（普通）が表示される | 長さ10・英数字 → エントロピー ≈ 70 bit |
+| level 3（強力）が表示される | 長さ12・英数字＋記号 → エントロピー ≈ 90 bit |
 | level 4（非常に強力）が表示される | 長さ16・全文字種 → エントロピー ≈ 100 bit |
 | バー幅が 20/40/60/80/100% になる | 目視確認 |
 | ダークテーマでも視認性がある | テーマ切り替えで確認 |
